@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>GAME</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+
+        </script>
+
+    <!-- Bootsrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+
+    <!-- Loading EventEmitter -->
+    <script src="EventEmitter.js"></script>
+
+    <!-- Loading Models -->
+    <script src="GameModel.js"></script>
+    <script src="FieldModel.js"></script>
+
+    <!-- Loading views -->
+    <script src="GameView.js"></script>
+
+    <!-- Loading Controllers -->
+    <script src="GameController.js"></script>
+
+    <!-- Starting the main App -->
+    <script src="App.js"></script>
+
+
+</head>
+
+
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-3">
+                <h2 id="score"><span>0</span> récoltes</h2>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <h2 id="water"><span>0</span> litre</h2>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <h2 id="money"><span>0</span> $</h2>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <h2>Nom du joueur : <span id="playername"></span></h2>
+            </div>
+        </div>
+
+        <div id="fields" class="row">
+            <div id="field-0" class="col-xs-6 col-sm-4">
+                <button class="btn btn-primary">Irriguer</button>
+                <div class="field"><span>0</span> %</div>
+                <div class=champs><span><table border="1" width="150" height="150" style="background-color:yellow; border-collapse:collapse"><tr><td>&nbsp;</td></tr></table></span></div>
+                <div class="WaterGauge"><span>0</span> L</div>
+                <button class="btn btn-success harvest">Récolter</button>
+            </div>
+            <div id="field-1" class="col-xs-6 col-sm-4">
+                <button class="btn btn-primary">Irriguer</button>
+                <div class="field"><span>0</span> %</div>
+                <div class=champs><span><table border="1" width="150" height="150" style="background-color:yellow; border-collapse:collapse"><tr><td>&nbsp;</td></tr></table></span></div>
+                <div class="WaterGauge"><span>0</span> L</div>
+                <button class="btn btn-success harvest">Récolter</button>
+            </div>
+            <div id="field-2" class="col-xs-6 col-sm-4">
+                <button class="btn btn-primary">Irriguer</button>
+                <div class="field"><span>0</span> %</div>
+                <div class=champs><span><table border="1" width="150" height="150" style="background-color:yellow; border-collapse:collapse"><tr><td>&nbsp;</td></tr></table></span></div>
+                <div class="WaterGauge"><span>0</span> L</div>
+                <button class="btn btn-success harvest ">Récolter</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalWater">Acheter Eau</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="ModalWater" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">ACHAT EAU</h4>
+                </div>
+                <div class="modal-body">
+                    <p><input type="number" id="waterQuantity" class="form-control" placeholder="Quantité d'eau désirée" /></p>
+                    <div id="priceDisplay">Ca fera :<span>0</span> $</div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+                    <button id="confirmBuy" type="button" class="btn btn-primary" data-dismiss="modal">Acheter</button>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div id="ModalStart" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Inscription</h4>
+                </div>
+                <div class="modal-body">
+                    <p><input type="text" id="name" class="form-control" placeholder="Saisir Nom" /></p>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="confirmName" type="button" class="btn btn-primary">Confirmer</button>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div id="ModalEnd" class="modal fade" role="dialog"  data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">YOU LOSE</h4>
+                </div>
+                <div class="modal-body">
+                    <span id="scoreList"></span> :
+                </div>
+
+                <div class="modal-footer">
+                    <button id="confirmName" type="button" class="btn btn-primary">Reload</button>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+
+</body>
+
+
+
+
+</html>
